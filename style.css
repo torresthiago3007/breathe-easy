@@ -1,0 +1,104 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f0f4f8;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #1e293b;
+}
+
+.container {
+    text-align: center;
+    background: #ffffff;
+    padding: 3rem 2.5rem;
+    border-radius: 24px;
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+    width: 420px;
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+h1 {
+    font-size: 2.2rem;
+    color: #0f172a;
+    font-weight: 700;
+}
+
+p#instruction {
+    font-size: 1.15rem;
+    color: #64748b;
+    margin-top: 0.5rem;
+    min-height: 28px;
+}
+
+.circle-container {
+    width: 280px;
+    height: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 1rem 0;
+}
+
+.circle {
+    width: 140px;
+    height: 140px;
+    background-color: #38bdf8;
+    border-radius: 50%;
+    transform: scale(1);
+    /* Sombra fixa que não desaparece, apenas acompanha a mudança de cor e tamanho */
+    transition: transform 4s cubic-bezier(0.4, 0, 0.2, 1), background-color 4s ease-in-out;
+    box-shadow: 0 10px 30px rgba(2, 132, 199, 0.3);
+}
+
+.circle.grow {
+    transform: scale(1.65);
+    background-color: #0284c7;
+}
+
+.controls {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    width: 100%;
+}
+
+.btn {
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn.primary {
+    background-color: #0f172a;
+    color: #ffffff;
+}
+
+.btn.primary:hover {
+    background-color: #334155;
+    transform: translateY(-1px);
+}
+
+.btn.secondary {
+    background-color: #e2e8f0;
+    color: #334155;
+}
+
+.btn.secondary:hover {
+    background-color: #cbd5e1;
+}
