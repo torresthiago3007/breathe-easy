@@ -1,16 +1,25 @@
 const startBtn = document.getElementById('start-btn');
 const muteBtn = document.getElementById('mute-btn');
+const themeToggle = document.getElementById('theme-toggle');
+const techniqueSelect = document.getElementById('technique-select');
 const instruction = document.getElementById('instruction');
 const circle = document.querySelector('.circle');
+const cycleCounter = document.getElementById('cycle-counter');
 
 let isRunning = false;
 let isMuted = false;
-let breathInterval = null;
-let currentTimeout = null;
 let audioCtx = null;
 let activeSource = null;
+let currentTimeout = null;
+let completedCycles = 0;
 
-function playBreathingSound(isInhale, duration = 4) {
+const techniques = {
+    '4-7-8': { inhale: 4, holdIn: 7, exhale: 8, holdOut: 0 },
+    'box': { inhale: 4, holdIn: 4, exhale: 4, holdOut: 4 },
+    'equal': { inhale: 4, holdIn: 0, exhale: 4, holdOut: 0 }
+};
+
+function playBreathingSound(isInhale, duration) {
     if (isMuted) return;
 
     try {
@@ -22,7 +31,6 @@ function playBreathingSound(isInhale, duration = 4) {
             audioCtx.resume();
         }
 
-        // Se já houver um som tocando, para ele imediatamente para evitar sobreposição
         if (activeSource) {
             try { activeSource.stop(); } catch (e) {}
         }
@@ -83,21 +91,64 @@ function playBreathingSound(isInhale, duration = 4) {
     }
 }
 
-function breathCycle() {
+function runBreathPhase(config) {
     if (!isRunning) return;
 
-    // Fase de Inspiração (4s)
-    instruction.textContent = "Inhale deeply through your nose...";
+    circle.style.transition = `transform ${config.inhale}s cubic-bezier(0.4, 0, 0.2, 1), background-color ${config.inhale}s ease-in-out`;
+
+    instruction.textContent = `Inhale deeply through nose (${config.inhale}s)...`;
+    circle.classList.remove('hold');
     circle.classList.add('grow');
-    playBreathingSound(true, 4);
+    playBreathingSound(true, config.inhale);
 
     currentTimeout = setTimeout(() => {
         if (!isRunning) return;
-        // Fase de Expiração (4s)
-        instruction.textContent = "Exhale slowly through your mouth...";
-        circle.classList.remove('grow');
-        playBreathingSound(false, 4);
-    }, 4000);
+
+        if (config.holdIn > 0) {
+            instruction.textContent = `Hold breath (${config.holdIn}s)...`;
+            circle.classList.add('hold');
+            
+            currentTimeout = setTimeout(() => {
+                if (!isRunning) return;
+                startExhalePhase(config);
+            }, config.holdIn * 1000);
+        } else {
+            startExhalePhase(config);
+        }
+    }, config.inhale * 1000);
+}
+
+function startExhalePhase(config) {
+    if (!isRunning) return;
+
+    circle.style.transition = `transform ${config.exhale}s cubic-bezier(0.4, 0, 0.2, 1), background-color ${config.exhale}s ease-in-out`;
+
+    instruction.textContent = `Exhale slowly through mouth (${config.exhale}s)...`;
+    circle.classList.remove('grow', 'hold');
+    playBreathingSound(false, config.exhale);
+
+    currentTimeout = setTimeout(() => {
+        if (!isRunning) return;
+
+        if (config.holdOut > 0) {
+            instruction.textContent = `Hold empty (${config.holdOut}s)...`;
+            
+            currentTimeout = setTimeout(() => {
+                if (!isRunning) return;
+                finishCycle(config);
+            }, config.holdOut * 1000);
+        } else {
+            finishCycle(config);
+        }
+    }, config.exhale * 1000);
+}
+
+function finishCycle(config) {
+    if (!isRunning) return;
+
+    completedCycles++;
+    cycleCounter.textContent = `Completed Cycles: ${completedCycles}`;
+    runBreathPhase(config);
 }
 
 function startSession() {
@@ -106,27 +157,35 @@ function startSession() {
     startBtn.classList.remove('primary');
     startBtn.classList.add('secondary');
     muteBtn.style.display = 'inline-block';
+    techniqueSelect.disabled = true;
 
-    breathCycle();
-    breathInterval = setInterval(breathCycle, 8000);
+    const selectedTech = techniqueSelect.value;
+    const config = techniques[selectedTech];
+
+    runBreathPhase(config);
 }
 
 function stopSession() {
     isRunning = false;
-    clearInterval(breathInterval);
     clearTimeout(currentTimeout);
 
-    // Para o som imediatamente ao pausar
     if (activeSource) {
         try { activeSource.stop(); } catch (e) {}
     }
 
     instruction.textContent = "Session paused. Click Start to resume.";
-    circle.classList.remove('grow');
+    circle.classList.remove('grow', 'hold');
     startBtn.textContent = "Start Session";
     startBtn.classList.remove('secondary');
     startBtn.classList.add('primary');
+    techniqueSelect.disabled = false;
 }
+
+themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    const isDark = document.body.classList.contains('dark-mode');
+    themeToggle.textContent = isDark ? '☀️' : '🌙';
+});
 
 startBtn.addEventListener('click', () => {
     if (isRunning) {

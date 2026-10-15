@@ -8,17 +8,45 @@
 </head>
 <body>
     <div class="container">
-        <h1>Breathe Easy</h1>
-        <p id="instruction">Click Start to begin your session</p>
-        
+        <header>
+            <div class="header-top">
+                <h1>Breathe Easy</h1>
+                <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme">🌙</button>
+            </div>
+            <p id="instruction">Select a technique and click Start to begin.</p>
+        </header>
+
+        <div class="preset-container">
+            <label for="technique-select">Technique:</label>
+            <select id="technique-select">
+                <option value="4-7-8">4-7-8 Relaxing</option>
+                <option value="box">Box Breathing</option>
+                <option value="equal" selected>Equal Breathing</option>
+            </select>
+        </div>
+
         <div class="circle-container">
             <div class="circle"></div>
+        </div>
+
+        <div class="stats-container">
+            <span id="cycle-counter">Completed Cycles: 0</span>
         </div>
 
         <div class="controls">
             <button id="start-btn" class="btn primary">Start Session</button>
             <button id="mute-btn" class="btn secondary" style="display: none;">🔊 Mute Audio</button>
         </div>
+
+        <!-- Secção de Evidências Científicas com Links Externos -->
+        <footer class="science-section">
+            <p class="science-title">🔬 Scientific Evidence & Research</p>
+            <div class="science-links">
+                <a href="https://pubmed.ncbi.nlm.nih.gov/28835754/" target="_blank" rel="noopener noreferrer">Diaphragmatic Breathing & Stress (PubMed)</a>
+                <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6137615/" target="_blank" rel="noopener noreferrer">Vagus Nerve & Parasympathetic Activation</a>
+                <a href="https://www.medicalnewstoday.com/articles/324417" target="_blank" rel="noopener noreferrer">4-7-8 Technique & Anxiety Reduction</a>
+            </div>
+        </footer>
     </div>
 
     <script src="script.js"></script>

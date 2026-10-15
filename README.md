@@ -1,52 +1,51 @@
-# 🫁 Breathe Easy — Guided Breathing & Calming Air Acoustics
+# 🫁 Breathe Easy — Guided Breathing & Calming Acoustics
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![GitHub Pages](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-brightgreen)](https://torresthiago3007.github.io/breathe-easy/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-GitHub_Pages-brightgreen.svg)](https://torresthiago3007.github.io/breathe-easy/)
 
-> **Breathe Easy** is a minimalist, web-based digital health application designed to assist users in managing acute anxiety, stress, and panic symptoms through paced diaphragmatic breathing accompanied by natural airflow acoustic cues.
-
----
-
-## 🔬 Scientific Basis & Evidence
-
-### 1. Diaphragmatic Breathing & Vagus Nerve Stimulation
-Slow, deliberate breathing at approximately **6 breaths per minute (~0.1 Hz)** stimulates vagal nerve activity, encouraging a transition from sympathetic nervous system dominance ("fight-or-flight") to parasympathetic regulation ("rest-and-digest").
-
-* **HRV Improvement:** Paced breathing increases Heart Rate Variability (HRV) and Respiratory Sinus Arrhythmia (RSA), promoting physiological resilience.
-* **State Anxiety Reduction:** Clinical research supports slow-paced breathing as an effective non-pharmacological intervention for acute stress.
-* *Reference:* **Zaccaro et al. (2018)** — *How Breath-Control Can Change Your Life: A Systematic Review on Psycho-Physiological Correlates of Slow Breathing.* ([Frontiers in Human Neuroscience](https://www.frontiersin.org/articles/10.3389/fnhum.2018.00353/full))
-
-### 2. Natural Airflow Acoustic Cues
-Unlike synthetic pure frequencies or intrusive audio clips, Breathe Easy synthesizes a subtle, organic pink-noise airflow sound directly via the **Web Audio API**.
-* **Audio-Visual Synchrony:** Auditory breathing cues act as an anchor, reducing cognitive load and helping users maintain rhythm without constantly staring at the screen.
+**Breathe Easy** is a minimalist, web-based digital health application designed to assist users in managing acute anxiety, stress, and panic symptoms through paced diaphragmatic breathing accompanied by natural airflow acoustic cues.
 
 ---
 
-## ✨ Key Features
+## 🌟 Key Features (v1.1)
 
-* 🌬️ **Paced Visual Guide:** Smooth CSS animations guiding 4-second inhalation and 4-second exhalation cycles.
-* 🎧 **Organic Airflow Audio:** Real-time audio synthesis mimicking gentle breathing sounds (no heavy MP3 downloads required).
-* ⏯️ **Session & Audio Controls:** Toggle pause/play and mute/unmute audio seamlessly.
-* 📐 **Responsive & Fixed Layout:** Optimized interface that prevents UI layout shifts during expansion.
-* 🌐 **100% English Interface:** Fully accessible for international audiences and recruiters.
+- **Multiple Breathing Techniques**:
+  - **4-7-8 Relaxing**: Designed for acute anxiety reduction and sleep onset.
+  - **Box Breathing**: Used for focus, emotional grounding, and autonomic stability.
+  - **Equal Breathing**: Paced 4s inhale / 4s exhale pattern for daily stress balance.
+- **Web Audio API Acoustics**: Zero external audio dependencies. Generates dynamic airflow acoustics programmatically using filtered noise synthesis.
+- **Cycle Tracker**: Real-time counter monitoring completed breathing cycles per session.
+- **Dark Mode**: Toggleable dark theme for comfortable nighttime use.
+- **Layout Stability**: Fixed shadow container design engineered to prevent visual jitter and Cumulative Layout Shift (CLS).
+
+---
+
+## 🔬 Scientific Basis & Research
+
+1. **Diaphragmatic Breathing & Vagus Nerve Stimulation**
+   - Slow, deliberate breathing at approximately 6 breaths per minute (~0.1 Hz) stimulates vagal nerve activity, encouraging a transition from sympathetic nervous system dominance ("fight-or-flight") to parasympathetic regulation ("rest and digest").
+   - [Effect of Diaphragmatic Breathing on Stress (PubMed)](https://pubmed.ncbi.nlm.nih.gov/28835754/)
+
+2. **Parasympathetic Activation via Prolonged Exhalation**
+   - Extended exhalations (such as in the 4-7-8 technique) slow heart rate via Respiratory Sinus Arrhythmia (RSA), aiding in rapid emotional grounding.
+   - [Vagus Nerve and Parasympathetic Activation (NCBI)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6137615/)
+
+3. **Box Breathing for Cognitive Control**
+   - Four-phase equal duration breathing stabilizes autonomic arousal and restores focus during high-stress states.
+   - [Effects of Deep Breathing Techniques (Medical News Today)](https://www.medicalnewstoday.com/articles/324417)
 
 ---
 
 ## 🛠️ Tech Stack
 
-* **Frontend:** HTML5, CSS3
-* **Logic & Audio Engine:** Vanilla JavaScript (ES6+), Web Audio API (Filter Modulation & Noise Buffers)
-* **Deployment:** GitHub Pages
+- **HTML5**: Semantic document structure with embedded scientific references.
+- **CSS3**: Custom CSS variables for theme toggling, smooth cubic-bezier transitions, and CSS Grid/Flexbox layout.
+- **JavaScript (ES6+)**: Asynchronous timing logic, Web Audio API synthesis, and DOM manipulation.
 
 ---
 
-## 🚀 Live Demo & How to Run
+## 🚀 How to Run Locally
 
-### Live Demo
-Try the application directly in your browser:  
-👉 **[Launch Breathe Easy](https://torresthiago3007.github.io/breathe-easy/)**
-
-### Local Setup
 1. Clone this repository:
    ```bash
    git clone [https://github.com/torresthiago3007/breathe-easy.git](https://github.com/torresthiago3007/breathe-easy.git)
